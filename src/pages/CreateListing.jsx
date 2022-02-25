@@ -12,10 +12,9 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
-import { async } from "@firebase/util";
 
 function CreateListing() {
-  const [geolocationEnabled, setGeolocationEnabled] = useState(true);
+  // const [geolocationEnabled, setGeolocationEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -46,8 +45,6 @@ function CreateListing() {
     regularPrice,
     discountedPrice,
     images,
-    latitude,
-    longitude,
   } = formData;
 
   const auth = getAuth();
@@ -68,6 +65,7 @@ function CreateListing() {
     return () => {
       isMounted.current = false;
     };
+    // eslint-disable-next-line
   }, [isMounted]);
 
   if (loading) {
@@ -88,7 +86,6 @@ function CreateListing() {
       return;
     }
 
-    let geolocation = {};
     let location;
 
     // if (geolocationEnabled) {
@@ -321,7 +318,7 @@ function CreateListing() {
             onChange={onMutate}
             required
           ></textarea>
-          {!geolocationEnabled && (
+          {/* {!geolocationEnabled && (
             <div className="formLatLng flex">
               <div>
                 <label className="formLabel">Latitude</label>
@@ -346,7 +343,7 @@ function CreateListing() {
                 />
               </div>
             </div>
-          )}
+          )} */}
 
           <label className="formLabel">Offer</label>
           <div className="formButtons">
